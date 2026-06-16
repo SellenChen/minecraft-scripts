@@ -2,8 +2,6 @@ __pycache__/
 *.pyc
 build/
 dist/
-build-onedir/
-dist-onedir/
 *.spec
 *.tmp
 mc_cleaner_backup_*/
