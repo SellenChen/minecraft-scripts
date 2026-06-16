@@ -10,6 +10,16 @@ def app_folder() -> Path:
     return Path(__file__).resolve().parent
 
 
+def ask_backup() -> bool:
+    while True:
+        answer = input("\n是否在清理前创建备份？输入 y/n 后回车: ").strip().lower()
+        if answer in {"y", "yes"}:
+            return True
+        if answer in {"n", "no"}:
+            return False
+        print("请输入 y 或 n。")
+
+
 def main() -> int:
     print("=== MC Cleaner Lite ===")
     print("自动清理当前存档中停留时间小于 1 分钟的区块。")
@@ -31,11 +41,14 @@ def main() -> int:
         input("\n按回车退出...")
         return 0
 
-    backup_root = execute_clean(world_path, summary, make_backup=True)
+    make_backup = ask_backup()
+    backup_root = execute_clean(world_path, summary, make_backup=make_backup)
     print("\n清理完成。")
     print(f"删除区块: {summary.deleted_chunks}")
     if backup_root:
         print(f"备份位置: {backup_root}")
+    else:
+        print("未创建备份。")
     input("\n按回车退出...")
     return 0
 

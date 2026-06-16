@@ -54,7 +54,7 @@ class CleanerGui(tk.Tk):
         shell.pack(fill=tk.BOTH, expand=True)
 
         ttk.Label(shell, text="MC Cleaner", style="Title.TLabel").pack(anchor="w")
-        ttk.Label(shell, text="选择存档、预览可清理区块，然后安全写入并自动备份。", style="Subtle.TLabel").pack(anchor="w", pady=(4, 22))
+        ttk.Label(shell, text="选择存档、预览可清理区块，然后按你的设置安全写入。", style="Subtle.TLabel").pack(anchor="w", pady=(4, 22))
 
         config = ttk.Frame(shell, style="Panel.TFrame", padding=18)
         config.pack(fill=tk.X)
@@ -76,7 +76,7 @@ class CleanerGui(tk.Tk):
         ttk.Checkbutton(dims, text="主世界", variable=self.dimension_vars["overworld"]).pack(side=tk.LEFT, padx=(0, 16))
         ttk.Checkbutton(dims, text="下界", variable=self.dimension_vars["nether"]).pack(side=tk.LEFT, padx=(0, 16))
         ttk.Checkbutton(dims, text="末地", variable=self.dimension_vars["end"]).pack(side=tk.LEFT, padx=(0, 16))
-        ttk.Checkbutton(dims, text="执行前备份", variable=self.make_backup).pack(side=tk.LEFT)
+        ttk.Checkbutton(dims, text="清理前创建备份", variable=self.make_backup).pack(side=tk.LEFT)
 
         config.columnconfigure(3, weight=1)
 
@@ -210,6 +210,8 @@ class CleanerGui(tk.Tk):
                     backup_root = event[1]
                     if backup_root:
                         self._append_log(f"备份位置: {backup_root}")
+                    else:
+                        self._append_log("未创建备份。")
                     self._append_log("清理完成。")
                     self._set_busy(False, "清理完成")
                     messagebox.showinfo("完成", "清理完成。")
