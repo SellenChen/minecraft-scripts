@@ -4,4 +4,4 @@
 
 ## 工具
 
-- `mc-cleaner/`: Minecraft 存档清理工具。
+- `mc-cleaner/`: Minecraft 存档清理工具，包含 GUI 版、Lite 版和命令行版。

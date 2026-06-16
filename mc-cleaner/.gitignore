@@ -5,3 +5,4 @@ dist/
 *.spec
 *.tmp
 mc_cleaner_backup_*/
+.venv/
